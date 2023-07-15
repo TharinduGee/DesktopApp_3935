@@ -1,0 +1,71 @@
+﻿<Window x:Class="DesktopApp_3935.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopApp_3935"
+        mc:Ignorable="d"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="Main Dashboard" Height="500" Width="800" WindowStartupLocation="CenterScreen" >
+    <Window.DataContext>
+        <local:MainWindowVM/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.45*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border  CornerRadius="50 0 00 50" Background="DarkCyan">
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel>
+                        <TextBlock Text="Student List"   VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Padding="6 ,  6, 6, 6" TextWrapping="Wrap" Background="PaleVioletRed" Margin="9"/>
+                        <ListView ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent , UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="SeaGreen" BorderThickness="2" CornerRadius="8" MinWidth="400">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding ImageURL}" Width="50" Height="50"/>
+                                            <TextBlock Text="{Binding FirstName}" Padding="10" Margin="10" MinWidth="50"/>
+                                            <TextBlock Text="{Binding LastName}" Padding="10" Margin="10" MinWidth="100"/>
+                                            <TextBlock Text="{Binding Age}" Padding="10" Margin="10" MinWidth="50"/>
+                                            <TextBlock Text="{Binding DoB}" Padding="10" Margin="10" MinWidth="50" />
+                                            <TextBlock Text="{Binding GPAValue}" Padding="10" Margin="10" MinWidth="50"/>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
+        <Border  CornerRadius="0 50 50 0" Grid.Column="1" Background="MediumAquamarine">
+             <StackPanel>
+                <Button Style="{StaticResource mainButton}" Command="{Binding AddStudentCommand}"
+                Content="Add"
+                        Margin="5 65 5 15"/>
+                <Button Style="{StaticResource mainButton}"  Command="{Binding EditStudentCommand}"
+                Content="Edit"
+                   
+                    />
+                <Button Style="{StaticResource mainButton}"  Command="{Binding DeleteStudentCommand}"
+                Content="Delete"
+                />
+                <Button Style="{StaticResource exitButton}"  Command="{Binding ExitCommand}"
+                Content="X" 
+                
+                />
+                
+            </StackPanel>
+        </Border>
+
+        
+
+    </Grid>
+</Window>
